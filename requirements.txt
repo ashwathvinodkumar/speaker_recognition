@@ -3,3 +3,4 @@ uvicorn
 resemblyzer
 numpy
 scipy
+python-multipart
