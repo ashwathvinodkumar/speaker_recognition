@@ -8,12 +8,16 @@ import tempfile
 
 app = FastAPI()
 
-# Load model and embeddings
+# Load encoder and embeddings
 encoder = VoiceEncoder()
 person_embeddings = np.load("person_embeddings.npy", allow_pickle=True).item()
 
 def cosine_similarity(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+@app.get("/")
+def root():
+    return {"message": "Speaker identification API is running"}
 
 @app.post("/identify-speaker/")
 async def identify_speaker(file: UploadFile = File(...)):
