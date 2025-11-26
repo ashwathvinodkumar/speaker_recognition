@@ -45,7 +45,7 @@ async def identify_speaker(file: UploadFile = File(...)):
 
         os.remove(tmp_path)
 
-        if best_score > 0.50:
+        if best_score > 0.60:
             return JSONResponse(content={"match": best_match, "score": float(round(best_score, 2))})
         else:
             return JSONResponse(content={"match": None, "message": "No confident match found."})
